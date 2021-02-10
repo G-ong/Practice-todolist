@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简单计算器</title>
+    <style>
+        .box1 {
+            width: 400px;
+            height: 600px;
+            margin: 0 auto;
+            background: pink;
+        }
+        
+        button {
+            display: inline-block;
+            width: 90px;
+            height: 90px;
+            margin: 1px;
+            background: white;
+        }
+        
+        .box2 {
+            margin-left: 10px;
+        }
+        
+        .box3 {
+            margin-top: 25px;
+        }
+        
+        #screen {
+            width: 350px;
+            height: 60px;
+            margin-left: 30px;
+            margin-top: 5px;
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box1">
+        <div><input type="text" id="screen"></div>
+        <button class="box2" class="box3" id="anniu">1</button>
+        <button class="box3" id="anniu">2</button>
+        <button class="box3" id="anniu">3</button>
+        <button class="box3" id="anniu">+</button>
+        <button class="box2" id="anniu">4</button>
+        <button id="anniu">5</button>
+        <button id="anniu">6</button>
+        <button id="anniu">-</button>
+        <button class="box2" id="anniu">7</button>
+        <button id="anniu">8</button>
+        <button id="anniu">9</button>
+        <button id="anniu">*</button>
+        <button class="box2" id="anniu">0</button>
+        <button id="anniu">.</button>
+        <button id="tuige">del</button>
+        <button id="anniu">/</button>
+        <button class="box2" id="chongzhi">重置</button>
+        <button id="anniu">=</button>
+        <span>阿真是小猪猪 嗯哼哼</span>
+    </div>
+    <script>
+        var anniu = document.querySelectorAll('#anniu');
+        var chongzhi = document.querySelector('#chongzhi');
+        var tuige = document.querySelector('#tuige');
+        var screen = document.querySelector('#screen');
+        var str = '';
+        for (var i = 0; i < anniu.length; i++) {
+            anniu[i].addEventListener('click', function(e) {
+                var text = this.innerHTML;
+                if (text === '=') {
+                    try {
+                        str = eval(str);
+                    } catch (e) {
+                        str = e.message;
+                    }
+                } else {
+                    str += text;
+                }
+                screen.value = str;
+            })
+        }
+        chongzhi.addEventListener('click', function(e) {
+            str = '';
+            screen.value = str;
+        })
+        tuige.addEventListener('click', function() {
+            if (str != '') {
+                str = str.substring(0, str.length - 1);
+            }
+            screen.value = str;
+        })
+    </script>
+
+</body>
+
+</html>
