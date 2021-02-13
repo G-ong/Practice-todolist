@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todolist</title>
+    <style>
+        .firstBox {
+            width: 600px;
+            height: 150px;
+            background-color: #e7e7e7;
+        }
+        
+        .btn {
+            width: 100px;
+            height: 40px;
+            background: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>任务清单</h1>
+    <div class="firstBox">
+        <h2>新增任务</h2>
+        <input type="text" class="input">
+        <button class="btn">添加任务</button>
+    </div>
+    <div class="secondBox">
+        <h2>待完成任务</h2>
+        <ul></ul>
+    </div>
+    <script>
+        var num = 0;
+        var btn = document.querySelector('.btn');
+        var ul = document.querySelector('ul');
+        var input = document.querySelector('.input');
+        // 添加li
+        btn.addEventListener('click', function() {
+            num++;
+            var add = input.value + "<button onclick='del(\"li" + num + "\")'>删除</button>" + "<button onclick='edit(\"li" + num + "\")'>编辑</button>";
+            var li = document.createElement('li');
+            li.innerHTML = add;
+            li.id = ('li' + num)
+            ul.appendChild(li);
+            input.value = '';
+        }, false); // 变为冒泡阶段
+        // 删除li
+        function del(id) {
+            document.getElementById(id).remove()
+        }
+
+        // 编辑li
+
+        function edit(id) {
+            var edit = prompt('请输入修改内容');
+            var add1 = edit + "<button onclick='del(\"" + id + "\")'>删除</button>" + "<button onclick='edit(\"" + id + "\")'>编辑</button>";
+            var id = document.getElementById(id);
+            id.innerHTML = add1;
+        }
+    </script>
+</body>
+
+</html>
